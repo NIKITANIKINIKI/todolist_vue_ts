@@ -1,6 +1,6 @@
-import UsualList from "../components/UsualList.vue";
-import ActiveList from "../components/ActiveList.vue";
-import DoneList from "../components/DoneList.vue";
+import UsualList from "./pages/UsualList.vue";
+import ActiveList from "./pages/ActiveList.vue";
+import DoneList from "./pages/DoneList.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes= [

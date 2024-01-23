@@ -1,7 +1,6 @@
 <template>
   <ul class="todo-list">
-    <Task v-for=" task, index in tasks" :task="task" :key="task.id"
-    :lenOfList="lenOfList"
+    <Task v-for="(task, index) in tasks" :task="task" :key="task.id"
     @removeTask="() => emit('removeTask', index)" 
     @changeCompleted="() => emit('changeCompleted', index)"/>
   </ul>
@@ -10,10 +9,10 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
 import Task from "./Task.vue";
-import NewTask from "../scr/types.ts";
+import type {NewTask} from "../types";
 
 defineProps({
-  tasks: Array as PropType<NewTask>
+  tasks: {type: Array as PropType<NewTask[]>, default:()=> []}
 })
 
 const emit=defineEmits(['changeCompleted', 'removeTask'])

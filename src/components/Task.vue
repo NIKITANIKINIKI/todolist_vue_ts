@@ -1,5 +1,5 @@
 <template>
-  <li class="todo-item" :class="{'todo-item--done': task.completed}">
+  <li class="todo-item" :class="{ 'todo-item--done': task.completed }">
     <div @click="() => emit('changeCompleted')" class="todo-item__status">
       <i class="bi bi-check2"></i>
     </div>
@@ -11,15 +11,13 @@
 </template>
 
 <script setup lang="ts">
-import {PropType} from 'vue'
-import NewTask from '../scr/types.ts'
+import type {PropType} from 'vue'
+import type {NewTask} from '../types'
 
 
 defineProps({
-    task: Object as PropType<NewTask>, 
-})
+  task: { type: Object as PropType<NewTask>,  default:()=> []},
+});
 
-const emit =defineEmits(['changeCompleted', 'removeTask'])
-
-
+const emit = defineEmits(["changeCompleted", "removeTask"]);
 </script>

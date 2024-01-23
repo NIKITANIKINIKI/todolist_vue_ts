@@ -25,12 +25,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import type { PropType } from "vue";
-import NewTask from "../scr/types.ts";
+import type {NewTask} from "../types";
 
 const props = defineProps({
-  tasks: Array as PropType<NewTask>,
+  tasks: {type: Array as PropType<NewTask[]>, default:()=> []},
   hidden: Boolean,
-  lastIndex: Number,
+  lastIndex: Object,
 });
 
 const text = ref<string>("");
@@ -39,20 +39,21 @@ const emit = defineEmits(["changeHidden"]);
 
 const onClickForms = () => {
   const el: NewTask = {
-    id: props.lastIndex ? props.lastIndex.id + 1 : 0,
+    id: props.lastIndex ? Number(props.lastIndex.id) + 1 : 0,
     content: text.value,
     completed: false,
   };
 
   const chechContent = () => {
-    return props.tasks.some((e) => e.content === el.content);
+    return props.tasks.some((e:NewTask) => e.content === el.content);
   };
 
   if (el.content != "" && el.content != " " && !chechContent()) {
     props.tasks.push(el);
+
   } else {
     alert("Вы ввели пустую строку или эта задача уже добавлена");
   }
-  console.log(props.tasks);
+  // localStorage.setItem('tasks', JSON.stringify(props.tasks))
 };
 </script>

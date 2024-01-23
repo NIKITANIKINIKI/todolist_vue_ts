@@ -9,6 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import Filters from "../components/Filters.vue";
+import Filters from "./components/Filters.vue";
 
 </script>
